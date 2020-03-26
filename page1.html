@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <title>
+        Page1
+    </title>
+
+</head>
+<body bgcolor="yellow">
+  Name:    <input id="name" type="text"><br><br>
+  Address:  <input id="address" type="text"><br><br>
+            <button>Add</button>
+
+
+            <script>
+
+                var sock = new WebSocket("ws://localhost:5002");
+
+
+                sock.onopen = function(){    
+                    prompt("connection okey")
+             
+                }
+
+
+
+            document.querySelector('button').onclick = function(){ 
+            
+            var name = document.getElementById('name').value; 
+            var address = document.getElementById('address').value;   
+            sock.send(JSON.stringify({                      
+                 type: name,
+                 data: address
+            }));
+        }
+            </script>
+</body></html>
